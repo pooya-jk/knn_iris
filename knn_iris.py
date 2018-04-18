@@ -1,16 +1,19 @@
 __author__ = 'Pooya Koshanfar'
 
-def find_smaller(first_num,second_num):
-    if first_num>=second_num:
+
+def find_smaller(first_num, second_num):
+    if first_num >= second_num:
         return second_num
     else:
         return first_num
+
 
 def find_avg(calculated_array):
     sum = 0
     for i in range(len(calculated_array)):
         sum += calculated_array[i][0]
-    return sum/len(calculated_array)
+    return sum / len(calculated_array)
+
 
 def cal_dis(old_sample, new_sample):
     a1 = float(old_sample[0])
@@ -24,21 +27,24 @@ def cal_dis(old_sample, new_sample):
     distance = abs((a1 - a2)) + abs((b1 - b2)) + abs((c1 - c2)) + abs((d1 - d2))
     return distance
 
-def cal_dis_all(number_of_sample,old_samples,new_sample):
+
+def cal_dis_all(number_of_sample, old_samples, new_sample):
     calculated = []
     for i in range(number_of_sample):
         temp = []
-        temp.append(cal_dis(old_samples[i],new_sample))
+        temp.append(cal_dis(old_samples[i], new_sample))
         temp.append(old_samples[i][4])
         calculated.append(temp)
     return calculated
 
+
 def find_nearests(calculated_array):
     finded = []
     for i in range(len(calculated_array)):
-        if calculated_array[i][0]<=find_avg(calculated_array):
+        if calculated_array[i][0] <= find_avg(calculated_array):
             finded.append(calculated_array[i])
     return finded
+
 
 def find_the_most(nearest_data):
     iris_setosa = 0
@@ -51,20 +57,21 @@ def find_the_most(nearest_data):
             iris_virsicolor += 1
         else:
             iris_virginica += 1
-    if iris_setosa>iris_virginica and iris_setosa>iris_virsicolor:
+    if iris_setosa > iris_virginica and iris_setosa > iris_virsicolor:
         return "iris_setosa"
-    elif iris_setosa<iris_virginica and iris_virginica>iris_virsicolor:
+    elif iris_setosa < iris_virginica and iris_virginica > iris_virsicolor:
         return "iris_virginica"
-    elif iris_setosa<iris_virsicolor and iris_virginica<iris_virsicolor:
+    elif iris_setosa < iris_virsicolor and iris_virginica < iris_virsicolor:
         return "iris_virsicolor"
-    elif iris_virsicolor==iris_setosa and iris_virginica!=iris_setosa:
+    elif iris_virsicolor == iris_setosa and iris_virginica != iris_setosa:
         return "not sure between iris_virsicolor and iris_setosa"
-    elif iris_virsicolor!=iris_setosa and iris_virginica==iris_setosa:
+    elif iris_virsicolor != iris_setosa and iris_virginica == iris_setosa:
         return "not sure between iris_virginica and iris_setosa"
-    elif iris_virsicolor==iris_virginica and iris_virginica!=iris_setosa:
+    elif iris_virsicolor == iris_virginica and iris_virginica != iris_setosa:
         return "not sure between iris-virginica and iris_virsicolor"
-    elif iris_setosa==iris_virsicolor and iris_virginica==iris_virsicolor:
+    elif iris_setosa == iris_virsicolor and iris_virginica == iris_virsicolor:
         return "not sure"
+
 
 with open("Iris Dataset.txt", "r") as f:
     content = f.readlines()
@@ -78,5 +85,5 @@ sepal_length = int(input("inter Sepal Length:"))
 sepal_width = int(input("inter Sepal Width:"))
 petal_lenght = int(input("inter Petal Length:"))
 petal_width = int(input("inter Petal Length:"))
-array = [sepal_length,sepal_width,petal_lenght,petal_width]
-print(find_the_most(find_nearests(cal_dis_all(150,data,array))))
+array = [sepal_length, sepal_width, petal_lenght, petal_width]
+print(find_the_most(find_nearests(cal_dis_all(150, data, array))))
