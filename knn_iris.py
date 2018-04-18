@@ -1,3 +1,5 @@
+import math
+
 __author__ = 'Pooya Koshanfar'
 
 
@@ -24,7 +26,7 @@ def cal_dis(old_sample, new_sample):
     b2 = float(new_sample[1])
     c2 = float(new_sample[2])
     d2 = float(new_sample[3])
-    distance = abs((a1 - a2)) + abs((b1 - b2)) + abs((c1 - c2)) + abs((d1 - d2))
+    distance = math.sqrt((a1 - a2)**2 + (b1 - b2)**2 + (c1 - c2)**2 + (d1 - d2)**2)
     return distance
 
 
